@@ -1,1 +1,3 @@
-const greguj = 1;
+import './css/styles.css';
+
+const DEBOUNCE_DELAY = 300;
