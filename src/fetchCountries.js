@@ -1,7 +1,7 @@
 import Notiflix from 'notiflix';
 
-export const fetchCountriesByName =  countryName = function fetchCountries(name) {
-    return fetch(`https://restcountries.com/v3.1/name/${name}`
+export const fetchCountriesByName =  countryName =>  {
+    return fetch(`https://restcountries.com/v3.1/name/${countryName}`
     // return fetch(`https://restcountries.com/v3.1/name/fields=${name};capital;lang;population;flags.svg;name.official`)
 )
     .then(response => {
