@@ -9,13 +9,13 @@ const boxCountryEl = document.querySelector(".country-info");
 const DEBOUNCE_DELAY = 300;
 
 // 1
-import {fetchCountriesByName} from './fetchCountries'
- 
+import { fetchCountriesByName } from './fetchCountries'
+
 // input Search and function 
 fieldInputEl.addEventListener("input", debounce(inputSearch, DEBOUNCE_DELAY))
 
 function inputSearch(e) {
-    const inputValue = e.target.value;
+    const inputValue = e.target.value.trim();
     console.log(inputValue)
     if (inputValue === "") {
         boxCountryEl.innerHTML = "";
@@ -28,21 +28,21 @@ function inputSearch(e) {
             listEl.innerHTML = "";
             console.log(countries)
             if (countries.length > 10) {
-            return Notiflix.Notify.info("Too many matches found. Please enter a more specific name.");
-        }
+                return Notiflix.Notify.info("Too many matches found. Please enter a more specific name.");
+            }
             if (countries.length === 1) {
-                
+
                 countries.map(c => markupBox(c.name.official, c.capital, c.population, Object.keys(c.languages).join(", "), c.flags.svg));
                 return;
             } else {
-            
+
                 countries.map(c => markupList(c.flags.svg, c.name.official));
                 return
-        }
-            
+            }
+
             //             countries.map(c => markupList(c.capital, c.name.official, c.population, c.flags.svg, c.languages));
-    })
-    
+        })
+
 }
 
 // Markup list and country box
@@ -66,12 +66,12 @@ function markupList(url, nameCountry) {
     createLi.append(createImg, createTitle);
     listEl.append(createLi);
 
-//       listEl.innerHTML =  `<li>
-//     <img src = ${url} alt ="${nameCountry}" height ="13" weight= "15" > 
-//     <p>${nameCountry} </p>
-//   </li>
-//    `;
-   
+    //       listEl.innerHTML =  `<li>
+    //     <img src = ${url} alt ="${nameCountry}" height ="13" weight= "15" > 
+    //     <p>${nameCountry} </p>
+    //   </li>
+    //    `;
+
 }
 
 function markupBox(countryName, capital, population, languages, flag) {
